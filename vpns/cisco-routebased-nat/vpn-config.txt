@@ -1,0 +1,69 @@
+1. En el router cisco ingresar a la cli y configurar lo siguiente
+show ip int brief
+config t
+int gig 0/0
+no shut
+ip address dhcp  "asignara una ip dinamica a la int g0/0 por dhcp - asigno la  192.168.122.212"
+mac-address C403.A839.34D3  "mac address de la tarjeta de red que se utiliza en mi caso la wifi"
+
+2. En Azure desde el recurso connection Descargar el archivo de configuración de la vpn e y ir cambiando
+de acuerdo a las configuración que se necesiten los siguientes puntos es un ejemplo de como se 
+debe configurar, se puede ir comparando  las configuraciones del archivo con  los puntos 3,4,5,6
+
+3. Desde el modo de configuracion "configuration terminal"  ingresar los siguiente "cambiar la ip match address local
+de acuerdo a la ip que se asigne por dhcp a la interfaz g0/0 en el paso 1"
+
+crypto ikev2 proposal Azure-Ikev2-Proposal
+  encryption aes-cbc-256
+  integrity sha1
+  group 2
+  exit
+
+crypto ikev2 policy Azure-Ikev2-Policy
+  proposal Azure-Ikev2-Proposal
+  match address local 192.168.122.212 $change
+  exit
+  
+crypto ikev2 keyring connection-azure-home-keyring
+  peer 20.25.9.162
+    address 20.25.9.162
+    pre-shared-key cisco123 
+  exit
+
+crypto ikev2 profile Azure-Ikev2-Profile
+  match address local 192.168.122.212 #change 
+  match identity remote address 20.25.9.162 255.255.255.255
+  authentication remote pre-share
+  authentication local pre-share
+  lifetime 28800       
+  dpd 10 5 on-demand
+  keyring local connection-azure-home-keyring
+  exit
+
+4. Ingresar las siguientes configuraciones
+
+crypto ipsec transform-set Azure-TransformSet esp-aes 256 esp-sha256-hmac
+  mode tunnel
+  exit
+
+crypto ipsec profile Azure-IPsecProfile
+  set transform-set Azure-TransformSet
+  set ikev2-profile Azure-Ikev2-Profile
+  set security-association lifetime seconds 3600
+  ! Note: PFS (perfect-forward-secrecy) is an optional feature (commented out)
+  !set pfs None
+  exit
+
+
+5. Ingresar la configuracion del tunnel
+int tunnel 11
+  ip address 169.254.0.1 255.255.255.255
+  tunnel mode ipsec ipv4
+  ip tcp adjust-mss 1350
+  tunnel source gigabitEthernet 0/0 #ojo colocar la ingerfaz en lugar de la ip que da el documento de config
+  tunnel destination 20.25.9.162
+  tunnel protection ipsec profile Azure-IPsecProfile
+  exit
+
+6. Ingresar la ruta estatica
+ip route 172.21.0.0 255.255.0.0 Tunnel 11

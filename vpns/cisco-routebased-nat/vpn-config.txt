@@ -3,15 +3,14 @@ show ip int brief
 config t
 int gig 0/0
 no shut
-ip address dhcp  "asignara una ip dinamica a la int g0/0 por dhcp - asigno la  192.168.122.212"
-mac-address C403.A839.34D3  "mac address de la tarjeta de red que se utiliza en mi caso la wifi"
+ip address dhcp               "esta config asignara una ip dinamica a la int g0/0 por dhcp - asigno la  192.168.122.212"
+mac-address C403.A839.34D3    "colocar la mac address de la tarjeta de red que se utiliza en mi caso la wifi"
 
 2. En Azure desde el recurso connection Descargar el archivo de configuración de la vpn e y ir cambiando
 de acuerdo a las configuración que se necesiten los siguientes puntos es un ejemplo de como se 
-debe configurar, se puede ir comparando  las configuraciones del archivo con  los puntos 3,4,5,6
+debe configurar, se puede ir comparando  las configuraciones del archivo con  los puntos 3,4,5,6 para realizar la configuracion.
 
-3. Desde el modo de configuracion "configuration terminal"  ingresar los siguiente "cambiar la ip match address local
-de acuerdo a la ip que se asigne por dhcp a la interfaz g0/0 en el paso 1"
+3. Desde el modo de configuracion "configuration terminal"  ingresar los siguiente 
 
 crypto ikev2 proposal Azure-Ikev2-Proposal
   encryption aes-cbc-256
@@ -21,7 +20,7 @@ crypto ikev2 proposal Azure-Ikev2-Proposal
 
 crypto ikev2 policy Azure-Ikev2-Policy
   proposal Azure-Ikev2-Proposal
-  match address local 192.168.122.212 $change
+  match address local 192.168.122.212       #cambiar por la ip que da dhcp a la g0/0 en el punto 1
   exit
   
 crypto ikev2 keyring connection-azure-home-keyring
@@ -31,7 +30,7 @@ crypto ikev2 keyring connection-azure-home-keyring
   exit
 
 crypto ikev2 profile Azure-Ikev2-Profile
-  match address local 192.168.122.212 #change 
+  match address local 192.168.122.212       #cambiar por la ip que da dhcp a la g0/0 en el punto 1
   match identity remote address 20.25.9.162 255.255.255.255
   authentication remote pre-share
   authentication local pre-share
@@ -60,7 +59,7 @@ int tunnel 11
   ip address 169.254.0.1 255.255.255.255
   tunnel mode ipsec ipv4
   ip tcp adjust-mss 1350
-  tunnel source gigabitEthernet 0/0 #ojo colocar la ingerfaz en lugar de la ip que da el documento de config
+  tunnel source gigabitEthernet 0/0                 #ojo colocar la interfaz g0/0 tal como esta no mantener  la ip que da el documento de config ya que estamos usando nat
   tunnel destination 20.25.9.162
   tunnel protection ipsec profile Azure-IPsecProfile
   exit

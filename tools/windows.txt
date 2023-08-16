@@ -1,0 +1,8 @@
+# kubectl
+choco install kubernetes-cli
+
+# helm
+choco install kubernetes-helm
+
+# azurecli
+choco install azure-cli

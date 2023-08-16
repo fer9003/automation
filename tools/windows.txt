@@ -6,3 +6,7 @@ choco install kubernetes-helm
 
 # azurecli
 choco install azure-cli
+
+# git - gitbash
+choco install git
+

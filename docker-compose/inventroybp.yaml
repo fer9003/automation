@@ -1,0 +1,14 @@
+version: '3.7'
+services:
+  inventory:
+    image: acrreg90.azurecr.io/app1/inventory:v1
+    ports:
+      - 80:80
+    environment:
+      - ENVIRONMENT=development
+      - POSTGRES_HOST=
+      - POSTGRES_USER=
+      - POSTGRES_PASSWORD=
+      - POSTGRES_PORT=5432
+      - PGSSLMODE=require
+      - DEVOPSTOKEN=

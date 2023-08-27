@@ -1,0 +1,7 @@
+# Comprobar al version de azure cli
+az version
+
+# Loguerse desde azure cli a la suscripcion de azure
+az login
+
+

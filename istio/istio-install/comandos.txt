@@ -1,3 +1,6 @@
+# Ejecutar los manifiestos 1,2 y 3 para instalar istio usando el comando
+kubectl apply -f <archivo_yaml>
+
 # Activar istio en el namespace default
 kubectl describe ns default
 kubectl label namespace default istio-injection=enabled

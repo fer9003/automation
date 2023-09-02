@@ -5,7 +5,7 @@
 2. Install kubectl
 
 ## Execute the following commands:
-´´´
+```
 kubectl config set-context istio --cluster=istio
 kubectl config set-cluster istio --server=http://localhost:8080
 kubectl config use-context istio
@@ -14,9 +14,9 @@ wget  https://github.com/istio/istio/releases/download/1.0.6/istio-1.0.6-linux.t
 tar -xvf istio-1.0.6-linux.tar.gz
 cd istio-1.0.6/
 docker compose -f install/consul/istio.yaml up -d
+```
 
-´´´
 ## Notes:
 Execute again the command:
-´docker compose -f install/consul/istio.yaml up -d´
+`docker compose -f install/consul/istio.yaml up -d`
 

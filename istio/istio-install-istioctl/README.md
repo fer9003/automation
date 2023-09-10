@@ -2,8 +2,8 @@
 
 ## Requisitos:
 1. Tener un cluster k8s provisionado.
-2. Tener instalado az cli. `choco install azure-cli`
-
+2. Tener conexión al cluster ".kube/config" `az aks get-credentials --resource-group <rg_name> --name <aks_cluster_name>`
+3. Tener instalado az cli. `choco install azure-cli`
 ### Instalar istioctl
 ```
 wget https://github.com/istio/istio/releases/download/1.18.2/istio-1.18.2-linux-amd64.tar.gz

@@ -17,3 +17,6 @@ export PATH=$PWD/bin:$PATH
 
 ### Validar que los componentes istio-ingressgateway, istio-egressGateway y istiod esten instalados.
 `kubectl get po -n istio-system`
+
+### Configurar istio injection para un namespace especifico
+`kubectl label namespace <namespace_name> istio-injection=enabled`

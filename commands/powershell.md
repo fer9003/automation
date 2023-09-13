@@ -56,3 +56,21 @@ $x = 98
 # Conectarse a cuenta Azure desde Powershell
 1. Comando para conectarse a Azure por Powershell
 `Connect-AzAccount`
+
+# Comandos para Azure Powershell 
+1. Informacion de la suscripción
+`Get-AzSubscription | fl`
+2. Información acerca de una VM
+`get-azvm`
+3. Parar una vm "TestVM"
+`stop-azvm -Name TestVM `
+4. Start una vm "TestVM"
+`start-azvm -Name TestVM`
+5. Mostrar los ResourceGroups
+`Get-AzResourceGroup`
+6. Crear un Resource Group
+`New-AzResourceGroup`
+7. Login y Logout
+`Login-AzAccount`
+`Logout-AzAccount`
+

@@ -44,8 +44,15 @@ $location
 $x = 98
 3 +$x
 ```
-# Pipelines Ideal for filtering Objects
+## Pipelines Ideal for filtering Objects
 `Get-Service | Format-List `
+`Get-Service -Name WinRM |Format-List -Property *`
+## Listar los servicios que estan en ejecución
+`Get-Service | Where-Object {$_.Status eq "Running}`
+## Listar los servicios que estan en stopped
+`Get-Service | Where-Object {$_.Status eq "Stopped"}`
+## Listar únicamente los 5 primeros servicios que estan en ejecución 
+`Get-Service | Where-Object {$_.Status eq "Running"} | Select-Object -First 5`
 
 # Instalar AZ Modulo para Azure
 1. Instalar el modulo Az

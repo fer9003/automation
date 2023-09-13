@@ -47,4 +47,12 @@ $x = 98
 # Pipelines Ideal for filtering Objects
 `Get-Service | Format-List `
 
+# Instalar AZ Modulo para Azure
+1. Instalar el modulo Az
+`Install-Module -Name Az -AllowClobber -Scope AllUsers`
+2. Verificar la instalacion
+`Get-Module`
 
+# Conectarse a cuenta Azure desde Powershell
+1. Comando para conectarse a Azure por Powershell
+`Connect-AzAccount`

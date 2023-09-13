@@ -1,4 +1,4 @@
-# Comandos Powershell
+# Comandos Basicos de Powershell
 1. Ejecutar un proceso por ejemplo Notepad
 `Start-Process notepad`
 2.  Cerrar un proceso por ejemplo Notepad
@@ -23,3 +23,15 @@
 `Copy-Item "C:\users\fernando\demo.txt" -Destination "C:\Demo\"`
 12. ELiminar un archivo
 `Remove-Item "C:\Users\fernando\demo.txt"`
+
+# Comandos Powershell Modules
+1. Muestra los modulos dispoibles
+`Get-Module -ListAvailable`
+2. Muestra los modulos instalados
+`Get-Module`
+3. Muestra todos los comandos disponibles en un modulo "Az.Compute"
+`Get-Command -Module "Az.Compute"`
+4. Mostrar info de ayuda acerca de un comando que pertenece a un modulo "Start-AzVM"
+`Get-Help Start-AzVM`
+5. Obtener un ejemplo de como usar un comando
+`Get-Help Start-AzVM -examples`

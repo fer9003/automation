@@ -9,6 +9,7 @@
 `Get-Content -Path .\demo.txt -TotalCount 8`
 5. Mostrar todos los servicios
 `Get-Service`
+`Get-Service -Name "win*" -Exclude "WinRM"`
 6. Iniciar un servicio "eventlog"
 `Start-Service -Name "eventlog"`
 7. Verificar el estado de un servicio "eventlog"
@@ -35,3 +36,15 @@
 `Get-Help Start-AzVM`
 5. Obtener un ejemplo de como usar un comando
 `Get-Help Start-AzVM -examples`
+
+# Variables
+```
+$location = Get-Location
+$location
+$x = 98
+3 +$x
+```
+# Pipelines Ideal for filtering Objects
+`Get-Service | Format-List `
+
+

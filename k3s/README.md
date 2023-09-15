@@ -31,4 +31,4 @@ kubectl expose pod my-first-pod --type NodePort --port=80 --name=nginx-np-servic
 kubectl get svc
 ```
 ## Visualizar desde el navegador con la ip del nodo master y puerto NodePort
-<ip_nodo_master>:<nodePort>
+`<ip_nodo_master>:<nodePort>`

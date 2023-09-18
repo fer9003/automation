@@ -6,5 +6,13 @@ Kubernetes is an open source system for automating deployment, scaling and manag
 3. Kubernetes is cloud agnostic you can use it on AWS, Azure, GCP, etc
 
 # Comandos para Kubernetes
+## NAMESPACES
+### Ver todos los pods del cluster
+`kubectl get pods --all-namespaces`
+## Ver los pods de un namespace especifico
+`kubectl get pods -n <namespace_name>`
+### Crear un namespace
+`kubectl create namespace <namespace_name>`
+
 ### Port Forwarding
- `kubectl port-forward myapp3-deployment-7c49c5df88-ztn8w 8080:80 `
+ `kubectl port-forward <pod_name> <localhost_port>:<container_port>`

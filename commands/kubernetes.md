@@ -16,3 +16,8 @@ Kubernetes is an open source system for automating deployment, scaling and manag
 
 ### Port Forwarding
  `kubectl port-forward <pod_name> <localhost_port>:<container_port>`
+ 
+## Monitoreo Pod
+### Consultar recursos de un Pod
+ `kubectl top pod <nombre_pod>`
+ `kubectl top pod --all-namespaces`

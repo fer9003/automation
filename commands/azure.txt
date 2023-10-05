@@ -4,4 +4,10 @@ az version
 # Loguerse desde azure cli a la suscripcion de azure
 az login
 
+# Ver los Id de los Tenant
+Get-AzTenant
+
+# Loguearse en Azure Powershell
+Connect-AzAccount
+
 

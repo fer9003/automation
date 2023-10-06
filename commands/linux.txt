@@ -1,2 +1,5 @@
  # Decodificar un valor códificado en base64
  echo YWRtaW4= | base64 -d
+
+# Instalar un parquete .deb
+sudo dpkg -i <nombredelarchivo.deb>

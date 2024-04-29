@@ -51,9 +51,12 @@ agregar en la prompt
 ```
 deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.28/deb/ /
 ```
-`EOF`
-Descargar la key gpg
 ```
+EOF
+```
+Crear la carpeta keyrings - Descargar la key gpg
+```
+sudo mkdir -p /etc/apt/keyrings/
 curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.28/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
 ```
 ## 7. Ejecutar los siguientes comandos para instala Kubeadm - colocar la version X.XX de acuerdo a las versiones obtenidas al ejecutar apt-cache madison kubeadm

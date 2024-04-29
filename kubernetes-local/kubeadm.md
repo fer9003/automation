@@ -69,8 +69,8 @@ sudo apt-mark hold kubelet kubeadm kubectl
 ## CONFIG WORKER NODES
 ## En todos los worker nodes realizar los pasos del 1 al 7
 
-## EN EL NODO MASTER INICIALIZAR EL CLUSTER "solo realizarlo en el master node"
-`sudo kubeadm init --pod-network-cidr 192.168.0.0/16 --kubernetes-version 1.27.0`
+## EN EL NODO MASTER INICIALIZAR EL CLUSTER "solo realizarlo en el master node - X.XX.X es la version que estas usando de k8s solo colocar la major.minor.patch version"
+`sudo kubeadm init --pod-network-cidr 192.168.0.0/16 --kubernetes-version X.XX.X`
 
 ## EN EL NODO MASTER EJECUTAR LOS SIGUIENTES COMANDOS
 ```

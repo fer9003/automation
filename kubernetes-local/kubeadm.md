@@ -4,7 +4,34 @@
 1. Provisionado un nodo master "control plane" en una distro Ubuntu 20.04
 2. Provisionado uno o mas  nodos workers "worker node" en una distro Ubuntu 20.04 
 
-## Configurar el nombre del host en el control plane y worker nodes
+## Configurar IPS estaticas y el nombre del host en el control plane y worker nodes
+### Configrar IPs estaticas 
+```
+ sudo vim /etc/netplan/00-installer-config.yaml
+```
+Cambiar a falso el valor del parametro dhcp4 y agregar las siguiente lineas con los valores de su red.
+```
+network:
+  ethernets:
+    enp0s3:
+      dhcp4: false
+      addresses: [XXX.XXX.X.XXX/24]
+      gateway4: XXX.XXX.X.X
+      nameservers:
+        addresses: [XXX.XXX.X.X, 8.8.8.8]
+  version: 2
+```
+Probar y aplicar los cambios
+```
+sudo netplan try
+sudo netplan apply
+ip a
+```
+Reinicar la VM y posteriormente hacer una prueba ping
+```
+sudo reboot
+ping -c 10 google.com.ec
+```
 ### Configurar el hostname como "k8s-control" para el master y "k8s-worker01" para el nodo
 `sudo  hostnamectl set-hostname k8s-control`
 `sudo  hostnamectl set-hostname k8s-worker01`
@@ -84,9 +111,9 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 si da un mensaje en status NOT READY proceder a instalar el siguiente manifiesto que es Calico network addon:
 ```
 wget https://docs.projectcalico.org/manifests/calico.yaml
-kubectl apply -f calico.yaml`
+kubectl apply -f calico.yaml
 ```
-## Validar que se encuentre el STATUS en READY
+## Validar que se encuentre el STATUS en READY "suele tardar de 3 a 6 min en cambiar de estado a ready"
 `kubectl get nodes`
 
 ## Si el status del nodo es READY  Proceder a Generar en el nodo master el comando que contiene el token
@@ -98,3 +125,9 @@ ejemplo sudo kubeadm join 10.158.0.4:6443 --token hxxxx --discovery-token-ca-cer
 ## Verificar desde el nodo master que ya aparezca el worker node con el comando
 `kubectl get nodes`
 El workernode debe aparecer con status READY
+
+## REINICIO DE NODOS
+Si reinicia las VMS al volver encender ejecutar en el master y worker nodes el comando:
+```
+sudo swapoff -a
+```

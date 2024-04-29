@@ -131,3 +131,13 @@ Si reinicia las VMS al volver encender ejecutar en el master y worker nodes el c
 ```
 sudo swapoff -a
 ```
+### ADMINISTRACION DE CLUSTER
+Para administrar el cluster es recomendable usar un equipo diferente a el nodo master para lo cual se debe realizar lo siguiente:
+1. Copiarse el archivo config localizado en ~/.kube del master node a el equipo que va administrar el cluster y guardarlo en el directorio del usuario bajo la misma estructura $HOME/.kube/config
+2. Descargar en el equipo que se va administrar kubectl desde el link:
+```
+https://dl.k8s.io/release/v1.30.0/bin/windows/amd64/kubectl.exe
+```
+3. Crear el folder binarios en el disco C: y mover el .exe de kubectl a ese folder debe quedar el .exe en "C:\binarios"
+4. Agregar la ruta C:\binarios en las variables del sistema en la variable $PATH.
+   

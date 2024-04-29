@@ -49,14 +49,18 @@ curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add
 `cat <<EOF | sudo tee /etc/apt/sources.list.d/kubernetes.list`
 agregar en la prompt
 ```
-deb https://apt.kubernetes.io/ kubernetes-xenial main
+deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.28/deb/ /
 ```
 `EOF`
-
-## 7. Ejecutar los siguientes comandos para instala Kubeadm
+Descargar la key gpg
+```
+curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.28/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+```
+## 7. Ejecutar los siguientes comandos para instala Kubeadm - colocar la version X.XX de acuerdo a las versiones obtenidas al ejecutar apt-cache madison kubeadm
 ```
 sudo apt-get update
-sudo apt-get install -y kubelet=1.27.0-00 kubeadm=1.27.0-00 kubectl=1.27.0-00
+apt-cache madison kubeadm
+sudo apt-get install -y kubelet=X.XX.X-XX kubeadm==X.XX.X-XX kubectl==X.XX.X-XX
 sudo apt-mark hold kubelet kubeadm kubectl 
 ```
 ## CONFIG WORKER NODES

@@ -48,7 +48,9 @@ curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add
 ## 6. Agregar el paquete al reposiorio de k8s
 `cat <<EOF | sudo tee /etc/apt/sources.list.d/kubernetes.list`
 agregar en la prompt
-`deb https://apt.kubernetes.io/ kubernetes-xenial main`
+```
+deb https://apt.kubernetes.io/ kubernetes-xenial main
+```
 `EOF`
 
 ## 7. Ejecutar los siguientes comandos para instala Kubeadm
